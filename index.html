@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>2048</title>
@@ -7,82 +8,206 @@
   <link href="style/main.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"
+    media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+  <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="viewport"
+    content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style type="text/css" id="operaUserStyle"></style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="heading">
-      <h1 class="title">2048</h1>
-      <div class="scores-container">
-        <div class="score-container">0</div>
-        <div class="best-container">0</div>
+  <div class="main-wrapper">
+    <!-- LEFT SIDE: Game Area -->
+    <div class="game-side">
+      <div class="container">
+        <div class="game-container">
+          <div class="game-message">
+            <p></p>
+            <div class="lower">
+              <a class="keep-playing-button">Keep going</a>
+              <a class="retry-button">Try again</a>
+            </div>
+          </div>
+
+          <div class="grid-container">
+            <div class="grid-row">
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+              <div class="grid-cell"></div>
+            </div>
+          </div>
+
+          <div class="tile-container">
+            <div class="tile tile-2 tile-position-1-1 tile-new">
+              <div class="tile-inner">2</div>
+            </div>
+            <div class="tile tile-4 tile-position-1-2 tile-new">
+              <div class="tile-inner">4</div>
+            </div>
+            <div class="tile tile-8 tile-position-2-1 tile-new">
+              <div class="tile-inner">8</div>
+            </div>
+            <div class="tile tile-32 tile-position-3-1 tile-new">
+              <div class="tile-inner">32</div>
+            </div>
+            <div class="tile tile-16 tile-position-3-2 tile-new">
+              <div class="tile-inner">16</div>
+            </div>
+            <div class="tile tile-2 tile-position-3-3 tile-new">
+              <div class="tile-inner">2</div>
+            </div>
+            <div class="tile tile-2 tile-position-4-1 tile-new">
+              <div class="tile-inner">2</div>
+            </div>
+            <div class="tile tile-8 tile-position-4-2 tile-new">
+              <div class="tile-inner">8</div>
+            </div>
+            <div class="tile tile-4 tile-position-4-3 tile-new">
+              <div class="tile-inner">4</div>
+            </div>
+            <div class="tile tile-8 tile-position-4-4 tile-new">
+              <div class="tile-inner">8</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="above-game">
-      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
+    <!-- RIGHT SIDE: Info Panel with Tabs -->
+    <div class="info-side" style="
+    margin-top: 40px;
+    min-height: 500px;
+">
+      <div class="info-panel" style="
+    min-height: 452px;
+">
+        <!-- Tabs Navigation -->
+        <div class="tabs-navigation">
+          <button class="tab-btn active" data-tab="game">Game</button>
+          <button class="tab-btn" data-tab="how-to-play">How to Play</button>
+          <button class="tab-btn" data-tab="about">About</button>
+          <button class="tab-btn" data-tab="notes">Notes</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tabs-content">
+          <!-- Game Tab -->
+          <div class="tab-pane active" id="game">
+            <!-- Title and Intro -->
+            <div class="panel-header">
+              <div class="left">
+                <h1 class="title" id="game-title">2048</h1>
+                <p class="game-intro">Join the numbers and get to the <strong id="goal-text">2048 tile!</strong></p>
+              </div>
+              <a class="restart-button">New Game</a>
+            </div>
+
+            <!-- Score Section -->
+            <div class="panel-scores">
+              <div class="score-box">
+                <span class="score-label">Score</span>
+                <div class="score-container">216<div class="score-addition">+216</div>
+                </div>
+              </div>
+              <div class="score-box">
+                <span class="score-label">Best</span>
+                <div class="best-container">2316</div>
+              </div>
+            </div>
+
+            <!-- Level Selector -->
+            <div class="level-selector">
+              <span class="level-label">🎯 Target Level:</span>
+              <div class="level-buttons">
+                <button class="level-btn" data-level="128">128</button>
+                <button class="level-btn" data-level="256">256</button>
+                <button class="level-btn" data-level="512">512</button>
+                <button class="level-btn" data-level="1024">1024</button>
+                <button class="level-btn active" data-level="2048">2048</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- How to Play Tab -->
+          <div class="tab-pane" id="how-to-play">
+            <h3>🎮 How to Play</h3>
+            <p>Use your <strong>arrow keys</strong> to move the tiles.</p>
+            <p>When two tiles with the same number touch, they <strong>merge into one!</strong></p>
+            <div class="controls-hint">
+              <div class="key-row">
+                <span class="key">↑</span>
+              </div>
+              <div class="key-row">
+                <span class="key">←</span>
+                <span class="key">↓</span>
+                <span class="key">→</span>
+              </div>
+            </div>
+            <p class="tip"><strong>Tip:</strong> Try to keep your highest tile in a corner!</p>
+          </div>
+
+          <!-- About Tab -->
+          <div class="tab-pane" id="about">
+            <h3>📖 About</h3>
+            <p>Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a></p>
+            <p>Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo
+                Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by
+                Asher Vollmer.</a></p>
+            <div class="divider"></div>
+            <h4>🔗 Links</h4>
+            <ul class="link-list">
+              <li><a href="https://github.com/gabrielecirulli/2048" target="_blank">GitHub Repository</a></li>
+              <li><a href="http://git.io/2048" target="_blank">Official Website</a></li>
+            </ul>
+          </div>
+
+          <!-- Notes Tab -->
+          <div class="tab-pane" id="notes">
+            <h3>📝 Notes</h3>
+            <div class="note-box warning">
+              <strong>⚠️ Official Version</strong>
+              <p>This site is the official version of 2048. You can play it on your phone via <a
+                  href="http://git.io/2048">http://git.io/2048</a></p>
+            </div>
+            <div class="note-box info">
+              <strong>ℹ️ Fakes &amp; Derivatives</strong>
+              <p>All other apps or sites are derivatives or fakes, and should be used with caution.</p>
+            </div>
+            <div class="note-box">
+              <strong>💾 Progress Saved</strong>
+              <p>Your game progress is automatically saved locally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="game-container">
-      <div class="game-message">
-        <p></p>
-        <div class="lower">
-	        <a class="keep-playing-button">Keep going</a>
-          <a class="retry-button">Try again</a>
-        </div>
-      </div>
-
-      <div class="grid-container">
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-      </div>
-
-      <div class="tile-container">
-
-      </div>
-    </div>
-
-    <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
-    </p>
-    <hr>
-    <p>
-    <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
-    </p>
   </div>
 
   <script src="js/bind_polyfill.js"></script>
@@ -95,5 +220,49 @@
   <script src="js/local_storage_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
+
+  <!-- Tab Switching Script -->
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        // Remove active class from all buttons and panes
+        document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-pane').forEach(function (p) { p.classList.remove('active'); });
+
+        // Add active class to clicked button and corresponding pane
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Level Selector
+    document.querySelectorAll('.level-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var level = parseInt(this.dataset.level);
+
+        // Update active button
+        document.querySelectorAll('.level-btn').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+
+        // Update title and goal text
+        document.getElementById('game-title').textContent = level;
+        document.getElementById('goal-text').textContent = level + ' tile!';
+
+        // Update game win target
+        window.gameWinTarget = level;
+
+        // Restart game with new level
+        if (window.gameManager) {
+          window.gameManager.restart();
+        }
+      });
+    });
+
+    // Set default win target
+    window.gameWinTarget = 2048;
+  </script>
+
+
 </body>
+
 </html>

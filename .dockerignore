@@ -1,0 +1,11 @@
+.git
+.backup
+.gitignore
+.jshintrc
+Dockerfile
+docker-compose.yml
+.dockerignore
+README.md
+CONTRIBUTING.md
+Rakefile
+*.scss
